@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM InternConnect - Your Career Journey Starts Here</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        .grayscale:hover {
+            filter: grayscale(0%);
+        }
+        
+        .shadow-lg:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+        }
+        
+        .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #1E40AF, #8B5CF6);
+        }
+        
+        .bg-gradient-to-t {
+            background: linear-gradient(to top, #F9FAFB, #FFFFFF);
+        }
+        
+        .btn-primary {
+            background-color: #4F46E5;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4338CA;
+        }
+        
+        .btn-secondary {
+            background-color: #FBBF24;
+            color: #1E293B;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #F59E0B;
+        }
+        
+        .digi-locker-icon {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .digi-locker-btn {
+            background: linear-gradient(to right, #1D4ED8, #1E40AF);
+            color: white;
+        }
+        
+        .digi-locker-btn:hover {
+            background: linear-gradient(to right, #1B3ABF, #1E40AF);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-indigo-600">PM InternConnect</h1>
+                    </div>
+                    <nav class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="#" class="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+                        <a href="#" class="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Jobs</a>
+                        <a href="#" class="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Events</a>
+                        <a href="#" class="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Resources</a>
+                        <a href="#" class="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Community</a>
+                    </nav>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="signInBtn" class="text-gray-700 hover:text-indigo-600 transition-colors font-medium">
+                        Sign In
+                    </button>
+                    <button id="getStartedBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700 hover:text-indigo-600 transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden bg-white border-t hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Jobs</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Events</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Resources</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Community</a>
+                <div class="pt-4 pb-3 border-t border-gray-200">
+                    <div class="flex items-center px-3">
+                        <button id="mobileSignInBtn" class="text-gray-700 hover:text-indigo-600 mr-4 font-medium">
+                            Sign In
+                        </button>
+                        <button id="mobileGetStartedBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+                Careers <span class="block">Start Here</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8">
+                The better career social network built for Gen Z
+            </p>
+            <p class="text-lg mb-12 max-w-4xl mx-auto opacity-90">
+                40M+ job seekers on the largest network for early careers<br />
+                For where you're going, not where you've been
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="heroExploreBtn" class="bg-white text-indigo-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                    Explore Jobs
+                </button>
+                <button id="bytieBtn" class="bg-yellow-400 text-indigo-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-colors shadow-lg flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.993l2.121-2.121m-1.5-1.5l1.414-1.414M18 12a6 6 0 11-12 0 6 6 0 0112 0z" />
+                    </svg>
+                    <span>Meet Bytie</span>
+                </button>
+            </div>
+
+            <div class="mt-12 flex justify-center text-sm opacity-90">
+                <span>By entering your mobile number and clicking 'get the app', you agree to receive texts from PM InternConnect to provide a link to access the PM InternConnect app, which is being provided to you for informational purposes only. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Feed -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">What's happening in the PM InternConnect community</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Post 1 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Internship+Success" alt="Internship Success" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/60x60/4F46E5/FFFFFF?text=A" alt="Aarav Sharma" class="w-10 h-10 rounded-full mr-3" />
+                            <div>
+                                <h3 class="font-bold text-gray-900">Aarav Sharma</h3>
+                                <p class="text-gray-600 text-sm">TechNova Labs</p>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Just landed my first internship at a startup!</h4>
+                        <p class="text-gray-700 mb-4">I never thought I'd get hired without experience... but PM InternConnect connected me with a mentor who helped me build my portfolio.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>247 likes</span>
+                            <span>38 comments</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/059669/FFFFFF?text=Hackathon+Win" alt="Hackathon Win" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/60x60/059669/FFFFFF?text=P" alt="Priya Patel" class="w-10 h-10 rounded-full mr-3" />
+                            <div>
+                                <h3 class="font-bold text-gray-900">Priya Patel</h3>
+                                <p class="text-gray-600 text-sm">Self-employed</p>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Coding challenge winner! 🏆</h4>
+                        <p class="text-gray-700 mb-4">Won ₹5k prize in PM InternConnect's Hackathon! My AI-powered study app concept got selected by Google mentors.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>512 likes</span>
+                            <span>89 comments</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 3 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/DC2626/FFFFFF?text=Remote+Work" alt="Remote Work" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/60x60/DC2626/FFFFFF?text=R" alt="Rohan Kumar" class="w-10 h-10 rounded-full mr-3" />
+                            <div>
+                                <h3 class="font-bold text-gray-900">Rohan Kumar</h3>
+                                <p class="text-gray-600 text-sm">PixelFlow Design</p>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Remote work changed my life</h4>
+                        <p class="text-gray-700 mb-4">Got hired as a UX designer for a Berlin-based startup. No commute, flexible hours, and I'm making more than my parents expected!</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>389 likes</span>
+                            <span>67 comments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employers Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Join 40M+ employers hiring talent like you</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From government organizations to FAANG companies — find your perfect fit
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-8 items-center justify-items-center">
+                <!-- Indian Government Organizations -->
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/FF9933/FFFFFF?text=NITI" alt="NITI Aayog" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/138808/FFFFFF?text=ISRO" alt="ISRO" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/0066CC/FFFFFF?text=DRDO" alt="DRDO" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/FF6600/FFFFFF?text=UIDAI" alt="UIDAI" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/138808/FFFFFF?text=NIC" alt="NIC" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                
+                <!-- Private Companies -->
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/003366/FFFFFF?text=TCS" alt="Tata Consultancy Services" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/0066CC/FFFFFF?text=Infosys" alt="Infosys" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/0066CC/FFFFFF?text=Wipro" alt="Wipro" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/0066CC/FFFFFF?text=HCL" alt="HCL Technologies" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/0066CC/FFFFFF?text=Mindtree" alt="Mindtree" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                
+                <!-- FAANG Companies -->
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/4285F4/FFFFFF?text=Google" alt="Google" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/1877F2/FFFFFF?text=Meta" alt="Meta" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/CCCCCC/000000?text=Apple" alt="Apple" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/FF9900/FFFFFF?text=Amazon" alt="Amazon" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+                <div class="flex items-center justify-center p-4">
+                    <img src="https://placehold.co/180x60/E50914/FFFFFF?text=Netflix" alt="Netflix" class="max-h-16 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Jobs and internships you actually want</h2>
+                <p class="text-xl text-gray-600">Filter by role, location, or company</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Job 1 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/4F46E5/FFFFFF?text=Frontend+Dev" alt="Junior Frontend Developer" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg">Junior Frontend Developer</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Full-time</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">PM InternConnect Labs</p>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Remote
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                            ₹6.5L - ₹8.5L
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">React</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TypeScript</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Remote</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">2 days ago</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 2 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/059669/FFFFFF?text=UX+Research" alt="UX Research Intern" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg">UX Research Intern</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Summer Internship</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">InnovateX</p>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Bangalore, India
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                            ₹1,200/hr
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">User Research</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Figma</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Interviews</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">1 day ago</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 3 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/DC2626/FFFFFF?text=Data+Analyst" alt="Data Analyst" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg">Data Analyst</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Full-time</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">Quantum Analytics</p>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Hyderabad, India
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                            ₹7L - ₹9L
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Python</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">SQL</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Tableau</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">3 days ago</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 4 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/7C3AED/FFFFFF?text=Content+Creator" alt="Content Creator (Social Media)" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg">Content Creator (Social Media)</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Contract</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">BrandSpark</p>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Remote
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                            ₹4L - ₹6L
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Instagram</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TikTok</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Copywriting</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">1 hour ago</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 5 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/EA580C/FFFFFF?text=Apprentice" alt="Software Engineering Apprentice" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg">Software Engineering Apprentice</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Apprenticeship</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">CodeForward</p>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Pune, India
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                            ₹5L + Benefits
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">JavaScript</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Node.js</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Mentorship</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">5 days ago</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 6 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/600x400/1F2937/FFFFFF?text=Cybersecurity" alt="Cybersecurity Intern" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg">Cybersecurity Intern</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Summer Internship</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">SecureNet</p>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Remote
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm mb-3">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                            ₹1,500/hr
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Network Security</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Ethical Hacking</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">CISSP</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">4 days ago</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-full font-medium hover:bg-indigo-600 hover:text-white transition-colors">
+                    View All Jobs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bytie AI Matchmaking Section -->
+    <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Powered by Bytie™ - Your AI Internship Matchmaker</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    Our proprietary AI engine analyzes your profile, skills, projects, and preferences to find your perfect internship matches with 90%+ accuracy.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Match 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/120x80/4F46E5/FFFFFF?text=TNL" alt="TechNova Labs" class="w-12 h-12 rounded-lg mr-3" />
+                                <div>
+                                    <h3 class="font-bold text-gray-900">TechNova Labs</h3>
+                                    <p class="text-gray-600 text-sm">Product Management Intern</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                94% Match
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-4 italic">"Your project on AI-driven student analytics aligns perfectly with their product roadmap"</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Key Skills Alignment:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Data Analysis</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">UI/UX Design</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span>Deadline: May 25, 2024</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center text-xs text-gray-400">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.993l2.121-2.121m-1.5-1.5l1.414-1.414M18 12a6 6 0 11-12 0 6 6 0 0112 0z" />
+                            </svg>
+                            AI-powered recommendation based on your profile and 40M+ other users' success patterns
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Match 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/120x80/059669/FFFFFF?text=IX" alt="InnovateX" class="w-12 h-12 rounded-lg mr-3" />
+                                <div>
+                                    <h3 class="font-bold text-gray-900">InnovateX</h3>
+                                    <p class="text-gray-600 text-sm">AI Research Intern</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                89% Match
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-4 italic">"Your hackathon-winning app demonstrates strong machine learning capabilities"</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Key Skills Alignment:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TensorFlow</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Natural Language Processing</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span>Deadline: June 10, 2024</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center text-xs text-gray-400">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.993l2.121-2.121m-1.5-1.5l1.414-1.414M18 12a6 6 0 11-12 0 6 6 0 0112 0z" />
+                            </svg>
+                            AI-powered recommendation based on your profile and 40M+ other users' success patterns
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Match 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/120x80/DC2626/FFFFFF?text=QA" alt="Quantum Analytics" class="w-12 h-12 rounded-lg mr-3" />
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Quantum Analytics</h3>
+                                    <p class="text-gray-600 text-sm">Data Science Intern</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                87% Match
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-4 italic">"Your SQL and Tableau projects match their data visualization needs"</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Key Skills Alignment:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">SQL</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Tableau</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Statistics</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span>Deadline: May 30, 2024</span>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center text-xs text-gray-400">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.993l2.121-2.121m-1.5-1.5l1.414-1.414M18 12a6 6 0 11-12 0 6 6 0 0112 0z" />
+                            </svg>
+                            AI-powered recommendation based on your profile and 40M+ other users' success patterns
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="bytieHowItWorksBtn" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg">
+                    See How Bytie Works →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Meet real employers at events, online, in messages, and in person</h2>
+                <p class="text-xl text-gray-600">From virtual career fairs to local networking meetups</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://placehold.co/600x400/059669/FFFFFF?text=Event+Invitation" alt="Event invitation" class="w-full h-64 object-cover" />
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-900 mb-2">Virtual Tech Career Fair</h3>
+                        <p class="text-gray-700 mb-4">Connect with 50+ tech companies looking for new grads</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            May 15, 2024 • 2:00 PM IST
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://placehold.co/600x400/DC2626/FFFFFF?text=Event+Response" alt="Event response" class="w-full h-64 object-cover" />
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-900 mb-2">Local Startup Meetup</h3>
+                        <p class="text-gray-700 mb-4">Network with founders and engineers in your city</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            June 10, 2024 • Bangalore, India
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-indigo-600 text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to start your career journey?</h2>
+            <p class="text-xl mb-8 opacity-90">Join 40M+ students and recent grads on the largest network for early careers</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="ctaExploreBtn" class="bg-white text-indigo-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                    Explore Opportunities
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Idea Submission Button (Fixed at bottom left) -->
+    <button id="ideaSubmitBtn" class="fixed bottom-8 left-8 bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all z-50 flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        <span class="font-medium">Submit Idea</span>
+    </button>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content bg-white rounded-2xl p-8 w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Sign in to PM InternConnect</h2>
+                <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <button class="w-full flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    Continue with Google
+                </button>
+                
+                <button class="w-full flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.281.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.163-2.759 6.163-6.163c0-3.403-2.759-6.162-6.163-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="#000"/>
+                    </svg>
+                    Continue with Instagram
+                </button>
+                
+                <button class="w-full flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="#0077B5"/>
+                    </svg>
+                    Continue with LinkedIn
+                </button>
+                
+                <!-- DigiLocker Login Button -->
+                <button class="w-full flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors digi-locker-btn">
+                    <svg class="w-5 h-5 mr-2 digi-locker-icon" viewBox="0 0 24 24">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Sign in with DigiLocker (Govt. ID)
+                </button>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    By continuing, you agree to our Terms of Service and Privacy Policy.
+                </p>
+                <p class="text-xs text-gray-500 mt-2">
+                    DigiLocker integration allows secure access to your Aadhaar, PAN, educational certificates, and other government documents.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bytie Modal -->
+    <div id="bytieModal" class="modal-overlay">
+        <div class="modal-content bg-white rounded-2xl p-8 w-full max-w-4xl max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-900">Meet Bytie™ - Your AI Internship Matchmaker</h2>
+                <button id="closeBytieModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.993l2.121-2.121m-1.5-1.5l1.414-1.414M18 12a6 6 0 11-12 0 6 6 0 0112 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">How Bytie Works</h3>
+                        <p class="text-gray-600">Our patented AI algorithm analyzes over 200 data points to find your perfect internship match</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center p-6 bg-white rounded-xl shadow">
+                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Profile Analysis</h4>
+                        <p class="text-gray-600 text-sm">We analyze your resume, projects, GitHub, LinkedIn, and academic background to understand your skills and interests.</p>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-white rounded-xl shadow">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Company Matching</h4>
+                        <p class="text-gray-600 text-sm">We cross-reference your profile with 40M+ company data points including culture, growth trajectory, and previous interns' success.</p>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-white rounded-xl shadow">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Personalized Recommendations</h4>
+                        <p class="text-gray-600 text-sm">Get curated internship suggestions with 90%+ match scores based on what similar students have succeeded with.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-gray-700 mb-4">
+                        <strong>Bytie™ has already matched 2.7M+ students</strong> with internships that lead to full-time offers, increasing placement rates by 68% compared to traditional job boards.
+                    </p>
+                    <div class="inline-flex items-center bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Patented AI Technology | 94% Accuracy Rate
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button id="closeBytieModalBtn" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-medium hover:bg-indigo-700 transition-colors shadow-lg">
+                    Got It! Let's Find My Internship
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Idea Submission Modal -->
+    <div id="ideaModal" class="modal-overlay">
+        <div class="modal-content bg-gradient-to-br from-green-500 via-yellow-500 to-red-500 rounded-2xl p-8 w-full max-w-md text-white">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Share Your Idea with the Indian Government</h2>
+                <button id="closeIdeaModal" class="text-white hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <p class="mb-6 text-center text-sm opacity-90">
+                Help shape India's future by submitting your innovative ideas for public service, technology, education, or infrastructure.
+            </p>
+            
+            <form id="ideaForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Your Name</label>
+                    <input 
+                        type="text" 
+                        class="w-full px-3 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                        placeholder="Enter your name"
+                    />
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-1">Email Address</label>
+                    <input 
+                        type="email" 
+                        class="w-full px-3 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                        placeholder="Enter your email"
+                    />
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-1">Your Idea</label>
+                    <textarea 
+                        rows="4" 
+                        class="w-full px-3 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                        placeholder="Describe your idea in detail..."
+                    ></textarea>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-1">Category</label>
+                    <select class="w-full px-3 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                        <option value="">Select a category</option>
+                        <option value="education">Education</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="technology">Technology & Innovation</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="environment">Environment & Sustainability</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button 
+                    type="submit"
+                    class="w-full bg-white text-indigo-600 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                >
+                    Submit Idea
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center text-xs opacity-80">
+                <p>This submission will be reviewed by the Ministry of Electronics and Information Technology.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <p class="text-2xl font-bold text-yellow-300">PM InternConnect</p>
+                <p class="text-gray-300 mt-4 text-lg">Where India's innovative youth begins their journey</p>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-gray-300">&copy; 2025 PM InternConnect. All rights reserved.</p>
+                <p class="text-gray-400 text-sm mt-2">Bytie™ is a trademark of PM InternConnect. AI-powered internship matching technology patented in India. DigiLocker integration powered by MeitY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const signInBtn = document.getElementById('signInBtn');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        const mobileSignInBtn = document.getElementById('mobileSignInBtn');
+        const mobileGetStartedBtn = document.getElementById('mobileGetStartedBtn');
+        const heroExploreBtn = document.getElementById('heroExploreBtn');
+        const ctaExploreBtn = document.getElementById('ctaExploreBtn');
+        const bytieBtn = document.getElementById('bytieBtn');
+        const bytieHowItWorksBtn = document.getElementById('bytieHowItWorksBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const bytieModal = document.getElementById('bytieModal');
+        const closeBytieModal = document.getElementById('closeBytieModal');
+        const closeBytieModalBtn = document.getElementById('closeBytieModalBtn');
+        const ideaSubmitBtn = document.getElementById('ideaSubmitBtn');
+        const ideaModal = document.getElementById('ideaModal');
+        const closeIdeaModal = document.getElementById('closeIdeaModal');
+        const ideaForm = document.getElementById('ideaForm');
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Login Modal Functions
+        function openLoginModal() {
+            loginModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModalFn() {
+            loginModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Bytie Modal Functions
+        function openBytieModal() {
+            bytieModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBytieModalFn() {
+            bytieModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Idea Modal Functions
+        function openIdeaModal() {
+            ideaModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeIdeaModalFn() {
+            ideaModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event Listeners
+        signInBtn.addEventListener('click', openLoginModal);
+        getStartedBtn.addEventListener('click', openLoginModal);
+        mobileSignInBtn.addEventListener('click', openLoginModal);
+        mobileGetStartedBtn.addEventListener('click', openLoginModal);
+        heroExploreBtn.addEventListener('click', openLoginModal);
+        ctaExploreBtn.addEventListener('click', openLoginModal);
+        bytieBtn.addEventListener('click', openBytieModal);
+        bytieHowItWorksBtn.addEventListener('click', openBytieModal);
+        closeLoginModal.addEventListener('click', closeLoginModalFn);
+        closeBytieModal.addEventListener('click', closeBytieModalFn);
+        closeBytieModalBtn.addEventListener('click', closeBytieModalFn);
+        ideaSubmitBtn.addEventListener('click', openIdeaModal);
+        closeIdeaModal.addEventListener('click', closeIdeaModalFn);
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                closeLoginModalFn();
+            }
+            if (e.target === bytieModal) {
+                closeBytieModalFn();
+            }
+            if (e.target === ideaModal) {
+                closeIdeaModalFn();
+            }
+        });
+
+        // Form submission
+        ideaForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for submitting your idea! We will review it soon.');
+            closeIdeaModalFn();
+            ideaForm.reset();
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add fade-in animation to main content
+            setTimeout(() => {
+                document.querySelector('main')?.classList.add('fade-in');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
